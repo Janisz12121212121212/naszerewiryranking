@@ -1,0 +1,5 @@
+match_id,team_a,team_b,score_a,score_b,map_name,is_tournament,stage,positions_a,positions_b
+1,Team Alpha,Team Beta,16,12,Mirage,True,Group Stage,A1;A2;A3,B1;B2;B3
+2,Team Gamma,Team Delta,8,16,Inferno,True,Group Stage,A4;A5,B4;B5;B6
+3,Team Alpha,Team Gamma,14,16,Nuke,True,Quarterfinal,A1;A3,A4;A5
+4,Team Beta,Team Delta,10,16,Overpass,True,Quarterfinal,B1;B2,B3;B4
