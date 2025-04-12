@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS2 Ranking Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        header { background-color: #333; color: white; padding: 10px; text-align: center; }
+        .container { padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { padding: 10px; border: 1px solid #ddd; }
+        th { background-color: #f4f4f4; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CS2 Ranking Dashboard</h1>
+    </header>
+    <div class="container">
+        <h2>Team Rankings</h2>
+        <table id="ranking-table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Team</th>
+                    <th>Points</th>
+                    <th>Heatmap</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script>
+        fetch('ranking.json')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.querySelector("#ranking-table tbody");
+                data.forEach((team, index) => {
+                    const heatmapData = Object.entries(team.heatmap).map(([pos, count]) => `${pos}: ${count}`).join(", ");
+                    const row = `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${team.team}</td>
+                            <td>${team.points}</td>
+                            <td>${heatmapData}</td>
+                        </tr>
+                    `;
+                    tableBody.innerHTML += row;
+                });
+            })
+            .catch(error => console.error("Error loading data:", error));
+    </script>
+</body>
+</html>
